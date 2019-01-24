@@ -1,0 +1,10 @@
+org/pvronlineService/activity/impl/ActivityImpl.class
+org/pvronlineService/config/JerseyConfig.class
+org/pvronlineService/activity/bussines/Login.class
+org/pvronlineService/activity/bussines/MailIds.class
+org/pvronlineService/StartApplication.class
+org/pvronlineService/activity/bussines/SignUp.class
+org/pvronlineService/activity/bussines/CreateUser.class
+org/pvronlineService/activity/bussines/AllUsers.class
+org/pvronlineService/activity/bussines/PvrDetails.class
+org/pvronlineService/activity/bussines/SendEmail.class

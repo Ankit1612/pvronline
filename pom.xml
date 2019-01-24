@@ -1,0 +1,64 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.pvr.online</groupId>
+  <artifactId>pvronline</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>pvronline</name>
+
+  <parent>
+  	<groupId>org.springframework.boot</groupId>
+  	<artifactId>spring-boot-starter-parent</artifactId>
+  	<version>2.1.1.RELEASE</version>
+  	<relativePath/>
+  </parent>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <modules>
+  	<module>pvronlineModel</module>
+  	<module>pvronlineCommon</module>
+  	<module>pvronlineAPI</module>
+  </modules>
+  
+  <dependencyManagement>
+  	<dependencies>
+  		<dependency>
+  			<groupId>com.pvr.online</groupId>
+  			<artifactId>pvronlineModel</artifactId>
+  			<version>${project.version}</version>
+  		</dependency>
+  		<dependency>
+  			<groupId>com.pvr.online</groupId>
+  			<artifactId>pvronlineCommon</artifactId>
+  			<version>${project.version}</version>
+  		</dependency>
+  		<dependency>
+  			<groupId>com.pvr.online</groupId>
+  			<artifactId>pvronlineAPI</artifactId>
+  			<version>${project.version}</version>
+  		</dependency>
+  	</dependencies>
+  </dependencyManagement>
+  
+    <build>
+  	<plugins>
+  		<plugin>
+  			<groupId>com.heroku.sdk</groupId>
+  			<artifactId>heroku-maven-plugin</artifactId>
+  			<version>2.0.6</version>
+  			<configuration>
+  				<appName>pvronline</appName>
+  				<processTypes>
+  					<web>java -Dserver.port=$PORT $JAVA_OPTS -cp target/classes:target/dependency/* org.pvronlineService.StartApplication</web>
+  				</processTypes>
+  			</configuration>
+  		</plugin>
+  	</plugins>
+  </build>
+  
+</project>
