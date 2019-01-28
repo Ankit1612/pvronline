@@ -47,10 +47,10 @@ public class ActivityImpl implements Activity{
 		int status = signUp.execute(signup);
 		if (status == 1) {
 			return Response.accepted(MediaType.APPLICATION_JSON).entity("{\"status\":\"success\"}")
-					.status(Status.OK.getStatusCode()).build();
+					.status(Status.OK.getStatusCode()).header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS").build();
 		}
 		return Response.accepted(MediaType.APPLICATION_JSON).entity("{\"status\":\"fail\"}")
-				.status(Status.BAD_REQUEST.getStatusCode()).build();
+				.status(Status.BAD_REQUEST.getStatusCode()).header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS").build();
 	}
 
 	@Path("/login")
@@ -62,10 +62,10 @@ public class ActivityImpl implements Activity{
 		if (fullname.isEmpty() || fullname == null) {
 			return Response.accepted(MediaType.APPLICATION_JSON)
 					.entity("{\"fullname\":" + fullname + "}")
-					.status(Status.BAD_REQUEST.getStatusCode()).build();
+					.status(Status.BAD_REQUEST.getStatusCode()).header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS").build();
 		}
 		return Response.accepted(MediaType.APPLICATION_JSON).entity("{\"fullname\":\"" + fullname + "\"}")
-				.status(Status.OK.getStatusCode()).build();
+				.status(Status.OK.getStatusCode()).header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS").build();
 	}
 
 	@Path("/adduser")
@@ -76,10 +76,10 @@ public class ActivityImpl implements Activity{
 		UserBean addedUser = createUser.execute(user);
 		if (addedUser != null) {
 			return Response.accepted(MediaType.APPLICATION_JSON).entity(addedUser)
-					.status(Status.OK.getStatusCode()).build();
+					.status(Status.OK.getStatusCode()).header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS").build();
 		}
 		return Response.accepted(MediaType.APPLICATION_JSON).entity(addedUser)
-				.status(Status.BAD_REQUEST.getStatusCode()).build();
+				.status(Status.BAD_REQUEST.getStatusCode()).header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS").build();
 	}
 
 	@Path("/sendmail")
@@ -89,7 +89,7 @@ public class ActivityImpl implements Activity{
 	public Response sendMail(MailBean mail) {
 		sendEmail.sendMail(mail.getTo(), mail.getSubject(), mail.getMessage());
 		return Response.accepted(MediaType.APPLICATION_JSON).entity("{\"status\":\"sent\"}")
-				.status(Status.OK.getStatusCode()).build();
+				.status(Status.OK.getStatusCode()).header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS").build();
 	}
 
 	@Path("/allUsers")
@@ -100,10 +100,10 @@ public class ActivityImpl implements Activity{
 		List<UserBean> userList = allUsers.execute();
 		if (!userList.isEmpty()) {
 			return Response.accepted(MediaType.APPLICATION_JSON).entity(userList)
-					.status(Status.OK.getStatusCode()).build();
+					.status(Status.OK.getStatusCode()).header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS").build();
 		}
 		return Response.accepted(MediaType.APPLICATION_JSON).entity(userList)
-				.status(Status.BAD_REQUEST.getStatusCode()).build();
+				.status(Status.BAD_REQUEST.getStatusCode()).header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS").build();
 	}
 
 	@Path("/pvrdetails")
@@ -114,23 +114,23 @@ public class ActivityImpl implements Activity{
 		List<PvrDetailsBean> listPvr = pvrDetails.execute();
 		if (!listPvr.isEmpty()) {
 			return Response.accepted(MediaType.APPLICATION_JSON).entity(listPvr)
-					.status(Status.OK.getStatusCode()).build();
+					.status(Status.OK.getStatusCode()).header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS").build();
 		}
 		return Response.accepted(MediaType.APPLICATION_JSON).entity(listPvr)
-				.status(Status.BAD_REQUEST.getStatusCode()).build();
+				.status(Status.BAD_REQUEST.getStatusCode()).header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS").build();
 	}
 	
 	@Path("/movie")
-	@POST
+	@GET
 	@Consumes("application/json")
 	@Produces("application/json")
 	public Response getMailIds(@QueryParam("movieCode") int movieCode) {
 		List<String> mailIdList = mailIds.execute(movieCode);
 		if(!mailIdList.isEmpty()) {
 			return Response.accepted(MediaType.APPLICATION_JSON).entity(mailIdList)
-					.status(Status.OK.getStatusCode()).build();
+					.status(Status.OK.getStatusCode()).header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS").build();
 		}
 		return Response.accepted(MediaType.APPLICATION_JSON).entity(mailIdList)
-				.status(Status.BAD_REQUEST.getStatusCode()).build();
+				.status(Status.BAD_REQUEST.getStatusCode()).header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS").build();
 	}
 }
